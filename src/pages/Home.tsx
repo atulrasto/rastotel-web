@@ -4,9 +4,7 @@ import { Container } from '../components/layout/Container'
 import { Button } from '../components/ui/Button'
 import { Link } from 'react-router-dom'
 import { WHATSAPP_LINK } from '../config/site'
-
-const TAGLINE = "Engineering Wireless Intelligence."
-const SUBLINE = "IT & Telecom • IoT • HAM (VHF/UHF/HF) • Emergency Comms • AI/Apps • Energy & Environment"
+import { TAGLINE, SUBLINE } from '../lib/constants'
 
 export default function Home() {
   return (
