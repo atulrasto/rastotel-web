@@ -18,7 +18,7 @@ There is no test suite, linter, or formatter configured in this repo — don't a
 
 ## Environment variables
 
-Vite only exposes vars prefixed `VITE_`. Set in `.env` (already present locally, not committed conventions aside):
+Vite only exposes vars prefixed `VITE_`. Copy `.env.example` to `.env` and fill in values — `.env` is gitignored and not in the repo:
 - `VITE_CONTACT_PROVIDER` — `formspree` or `emailjs`
 - `VITE_FORMSPREE_ID` — Formspree form id (used when provider is `formspree`)
 - `VITE_RECAPTCHA_SITE_KEY` — reCAPTCHA v3 site key, used directly in `src/pages/Contact.tsx`

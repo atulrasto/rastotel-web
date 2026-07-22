@@ -18,7 +18,7 @@ Production-ready starter for **Rastotel Technologies Pvt Ltd**.
    ```
 
 ## Environment
-Create a `.env` file in project root:
+Copy `.env.example` to `.env` and fill in values:
 ```
 VITE_CONTACT_PROVIDER=formspree
 VITE_FORMSPREE_ID=your_formspree_id
