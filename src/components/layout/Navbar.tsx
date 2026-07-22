@@ -23,9 +23,10 @@ export function Navbar() {
     <div className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-gray-200">
       <Container>
         <div className="flex items-center justify-between py-3">
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="Rastotel" className="h-8 w-auto" />
-            <span className="font-extrabold text-xl text-sky-700">Rastotel</span>
+          <Link to="/" className="flex items-center">
+            <span className="inline-flex items-center bg-brand-navy px-3 py-2">
+              <img src={logo} alt="Rastotel" className="h-8 w-auto" />
+            </span>
           </Link>
           <nav className="hidden md:flex gap-1">
             <NavItem to="/">Home</NavItem>
@@ -33,6 +34,7 @@ export function Navbar() {
             <NavItem to="/services">Services</NavItem>
             <NavItem to="/solutions">Solutions</NavItem>
             <NavItem to="/projects">Projects</NavItem>
+            <NavItem to="/csr">CSR</NavItem>
             <NavItem to="/blog">Blog</NavItem>
             <NavItem to="/contact">Contact</NavItem>
           </nav>
@@ -48,6 +50,7 @@ export function Navbar() {
             <NavItem to="/services">Services</NavItem>
             <NavItem to="/solutions">Solutions</NavItem>
             <NavItem to="/projects">Projects</NavItem>
+            <NavItem to="/csr">CSR</NavItem>
             <NavItem to="/blog">Blog</NavItem>
             <NavItem to="/contact">Contact</NavItem>
           </div>

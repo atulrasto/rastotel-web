@@ -13,6 +13,7 @@ module.exports = {
           primary: "#0EA5E9",
           primaryDark: "#0369A1",
           accent: "#22C55E",
+          navy: "#111431",
         }
       },
       borderRadius: {

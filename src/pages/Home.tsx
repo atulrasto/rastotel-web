@@ -37,6 +37,17 @@ export default function Home() {
         </div>
       </Section>
 
+      <Section title="Platforms We Operate" subtitle="Not slideware — three working platforms, built end-to-end in-house, that you can try today.">
+        <div className="grid md:grid-cols-3 gap-6">
+          <PlatformCard name="energymonai" industry="Energy & Facilities" desc="Live energy and environmental monitoring across every site you run." liveUrl="https://c1.energymonai.com" />
+          <PlatformCard name="icumonai" industry="Healthcare" desc="ICU vitals monitoring as a safe, supplementary display alongside certified bedside monitors." liveUrl="https://icu1.energymonai.com" />
+          <PlatformCard name="batmonai" industry="Backup Power" desc="Battery and inverter monitoring with automatic mains-outage and discharge detection." liveUrl="https://batmon.energymonai.com" />
+        </div>
+        <div className="mt-6">
+          <Link className="text-sky-600 underline" to="/projects">See the full case studies →</Link>
+        </div>
+      </Section>
+
       <Section title="Ready to Build?">
         <div className="flex flex-wrap gap-3">
           <Link to="/contact"><Button>Schedule a discovery call</Button></Link>
@@ -52,6 +63,23 @@ function Card({ title, desc }: { title: string; desc: string }) {
     <div className="card p-6">
       <div className="text-xl font-semibold">{title}</div>
       <p className="mt-2 text-gray-600">{desc}</p>
+    </div>
+  )
+}
+
+function PlatformCard({ name, industry, desc, liveUrl }: { name: string; industry: string; desc: string; liveUrl: string }) {
+  return (
+    <div className="card p-6">
+      <div className="flex items-center justify-between">
+        <div className="text-xl font-semibold">{name}</div>
+        <span className="text-xs font-semibold uppercase tracking-wide text-sky-700 bg-sky-50 rounded-full px-3 py-1">
+          {industry}
+        </span>
+      </div>
+      <p className="mt-2 text-gray-600">{desc}</p>
+      <a href={liveUrl} target="_blank" rel="noreferrer" className="mt-3 inline-block text-sky-600 underline text-sm">
+        View Live →
+      </a>
     </div>
   )
 }

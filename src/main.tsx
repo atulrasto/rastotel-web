@@ -18,6 +18,7 @@ import Contact from './pages/Contact'
 import CSR from './pages/CSR'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
+import NotFound from './pages/NotFound'
 // Inject Google Analytics if env var exists
 injectGA()
 
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             <Route path="/csr" element={<CSR />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </App>
       </BrowserRouter>

@@ -5,7 +5,6 @@ export const SITE = {
   phone: "+91-99713-85555",
   email: "info@rastotel.in",
   address: "New Delhi, India",
-  socials: { linkedin: "#", twitter: "#", youtube: "#" },
   meta: {
     title: "Rastotel Technologies | IT, IoT, HAM & Emergency Communications",
     description:
