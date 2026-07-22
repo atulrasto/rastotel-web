@@ -9,6 +9,7 @@ export const SITE = {
     title: "Rastotel Technologies | IT, IoT, HAM & Emergency Communications",
     description:
       "International-grade IT & Telecom solutions: IoT, HAM VHF/UHF/HF, emergency communications, AI, mobile & web apps, and energy/environment systems.",
+    image: "https://rastotel.in/favicon.png",
   },
 };
 
