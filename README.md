@@ -39,23 +39,24 @@ npm run preview
 ```
 
 ## Deploy (Hostinger)
-Upload the contents of `/dist` to `public_html/`.
-Add the following `.htaccess` in your site root to enable SPA routing:
-```
-RewriteEngine On
-RewriteBase /
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
-```
+
+**Automated (recommended):** `.github/workflows/deploy.yml` builds and FTP-deploys `dist/` to
+`public_html/` on every push to `main`. Requires these GitHub repo secrets (Settings → Secrets and
+variables → Actions):
+- `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD` — from Hostinger hPanel → Advanced → FTP Accounts
+- `VITE_CONTACT_PROVIDER`, `VITE_FORMSPREE_ID`, `VITE_RECAPTCHA_SITE_KEY`, `VITE_GA_ID` — same values as your local `.env`
+
+**Manual:** `npm run build`, then upload the contents of `/dist` to `public_html/` (File Manager or FTP).
+
+The `.htaccess` needed for SPA routing lives in `/public/.htaccess` and is included in every build
+automatically — no separate manual step needed.
 
 ## Structure
 - `/src/pages` — Pages
 - `/src/components` — UI & Layout
 - `/src/config/site.ts` — Company config
-- `/src/lib` — SEO, analytics, forms
-- `/public` — Static files (favicon, robots, sitemap)
+- `/src/lib` — SEO, analytics
+- `/public` — Static files (favicon, robots, sitemap, `.htaccess`)
 
 ## Notes
 - Replace placeholder copy, images, and legal text.
