@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Mail, MapPin, MessageCircle, Phone } from "lucide-react"
 
 import { SEO } from "../lib/seo"
 import { PageHeader } from "../components/layout/PageHeader"
@@ -11,6 +12,7 @@ import { Input } from "../components/ui/Input"
 import { Textarea } from "../components/ui/Textarea"
 import { Select } from "../components/ui/Select"
 import { Button } from "../components/ui/Button"
+import { SITE, WHATSAPP_LINK } from "../config/site"
 
 // Read from .env (Vite exposes only VITE_* vars)
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY
@@ -104,60 +106,102 @@ export default function Contact() {
       <SEO title="Contact | Rastotel" description="Get in touch with Rastotel Technologies." canonical="https://rastotel.in/contact" />
       <PageHeader title="Contact Us" subtitle="Let's discuss your project or idea." />
       <Section>
-        <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-6 max-w-3xl">
-          <div>
-            <label className="block text-sm font-medium">Name</label>
-            <Input {...register("name")} />
-            {errors.name && <p className="text-sm text-red-600 mt-1">{errors.name.message}</p>}
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Email</label>
-            <Input type="email" {...register("email")} />
-            {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Phone</label>
-            <Input {...register("phone")} />
-          </div>
-          <div>
-            <label className="block text-sm font-medium">Company</label>
-            <Input {...register("company")} />
+        <div className="grid lg:grid-cols-5 gap-8 max-w-5xl">
+          <div className="lg:col-span-2 space-y-6">
+            <div className="card p-6">
+              <div className="text-lg font-semibold">Contact Details</div>
+              <div className="mt-4 space-y-4">
+                <div className="flex items-start gap-3">
+                  <Phone className="h-5 w-5 text-sky-600 mt-0.5 shrink-0" />
+                  <div>
+                    <div className="text-sm text-gray-500">Phone</div>
+                    <a href={`tel:${SITE.phone}`} className="font-medium text-gray-900">{SITE.phone}</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Mail className="h-5 w-5 text-sky-600 mt-0.5 shrink-0" />
+                  <div>
+                    <div className="text-sm text-gray-500">Email</div>
+                    <a href={`mailto:${SITE.email}`} className="font-medium text-gray-900">{SITE.email}</a>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-sky-600 mt-0.5 shrink-0" />
+                  <div>
+                    <div className="text-sm text-gray-500">Address</div>
+                    <div className="font-medium text-gray-900">{SITE.address}</div>
+                  </div>
+                </div>
+              </div>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noreferrer"
+                className="btn mt-6 w-full justify-center gap-2 bg-green-500 text-white hover:bg-green-600"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Chat on WhatsApp
+              </a>
+            </div>
+
+            <div className="card p-6">
+              <div className="text-sm font-semibold text-gray-500 uppercase tracking-wide">Response Time</div>
+              <p className="mt-2 text-gray-600">We typically respond within one business day.</p>
+            </div>
           </div>
 
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium">Topic</label>
-            <Select defaultValue="" {...register("topic")}>
-              <option value="">Select a topic</option>
-              <option value="General">General</option>
-              <option value="IoT">IoT</option>
-              <option value="Emergency Comms">Emergency Comms</option>
-              <option value="AI & Software">AI & Software</option>
-              <option value="Mobile Apps">Mobile Apps</option>
-              <option value="Web Portals">Web Portals</option>
-            </Select>
-            {errors.topic && <p className="text-sm text-red-600 mt-1">{errors.topic.message}</p>}
-          </div>
+          <div className="lg:col-span-3">
+            <form onSubmit={handleSubmit(onSubmit)} className="card p-6 md:p-8 grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-sm font-medium">Name <span className="text-red-500">*</span></label>
+                <Input {...register("name")} />
+                {errors.name && <p className="text-sm text-red-600 mt-1">{errors.name.message}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Email <span className="text-red-500">*</span></label>
+                <Input type="email" {...register("email")} />
+                {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Phone</label>
+                <Input {...register("phone")} />
+              </div>
+              <div>
+                <label className="block text-sm font-medium">Company</label>
+                <Input {...register("company")} />
+              </div>
 
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium">Message</label>
-            <Textarea {...register("message")} />
-            {errors.message && <p className="text-sm text-red-600 mt-1">{errors.message.message}</p>}
-          </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium">Topic <span className="text-red-500">*</span></label>
+                <Select defaultValue="" {...register("topic")}>
+                  <option value="">Select a topic</option>
+                  <option value="General">General</option>
+                  <option value="IoT Energy Monitoring (energymonai)">IoT Energy Monitoring (energymonai)</option>
+                  <option value="ICU Vitals Monitoring (icumonai)">ICU Vitals Monitoring (icumonai)</option>
+                  <option value="Battery & Inverter Monitoring (batmonai)">Battery & Inverter Monitoring (batmonai)</option>
+                  <option value="IoT">Other IoT</option>
+                  <option value="Emergency Comms">Emergency Comms</option>
+                  <option value="AI & Software">AI & Software</option>
+                  <option value="Mobile Apps">Mobile Apps</option>
+                  <option value="Web Portals">Web Portals</option>
+                </Select>
+                {errors.topic && <p className="text-sm text-red-600 mt-1">{errors.topic.message}</p>}
+              </div>
 
-          <div className="flex items-center gap-3 md:col-span-2">
-            <Button disabled={isSubmitting} type="submit">
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </Button>
-            <a
-              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-100"
-              href="https://wa.me/919971385555"
-              target="_blank"
-              rel="noreferrer"
-            >
-              WhatsApp
-            </a>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium">Message <span className="text-red-500">*</span></label>
+                <Textarea rows={5} {...register("message")} />
+                {errors.message && <p className="text-sm text-red-600 mt-1">{errors.message.message}</p>}
+              </div>
+
+              <div className="sm:col-span-2">
+                <Button disabled={isSubmitting} type="submit" className="w-full sm:w-auto">
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </Button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
 
         {toast && (
           <div className="fixed bottom-4 right-4 rounded-xl bg-gray-900 text-white px-4 py-3 shadow-lg">

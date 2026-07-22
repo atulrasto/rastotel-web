@@ -11,3 +11,5 @@ export const SITE = {
       "International-grade IT & Telecom solutions: IoT, HAM VHF/UHF/HF, emergency communications, AI, mobile & web apps, and energy/environment systems.",
   },
 };
+
+export const WHATSAPP_LINK = `https://wa.me/${SITE.phone.replace(/\D/g, "")}`;

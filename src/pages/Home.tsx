@@ -3,6 +3,7 @@ import { Section } from '../components/layout/Section'
 import { Container } from '../components/layout/Container'
 import { Button } from '../components/ui/Button'
 import { Link } from 'react-router-dom'
+import { WHATSAPP_LINK } from '../config/site'
 
 const TAGLINE = "Engineering Wireless Intelligence."
 const SUBLINE = "IT & Telecom • IoT • HAM (VHF/UHF/HF) • Emergency Comms • AI/Apps • Energy & Environment"
@@ -51,7 +52,7 @@ export default function Home() {
       <Section title="Ready to Build?">
         <div className="flex flex-wrap gap-3">
           <Link to="/contact"><Button>Schedule a discovery call</Button></Link>
-          <a className="btn btn-outline" href="https://wa.me/919971385555" target="_blank" rel="noreferrer">WhatsApp Us</a>
+          <a className="btn btn-outline" href={WHATSAPP_LINK} target="_blank" rel="noreferrer">WhatsApp Us</a>
         </div>
       </Section>
     </>
