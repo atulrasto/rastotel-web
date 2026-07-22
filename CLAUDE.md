@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Marketing/corporate website for **Rastotel Technologies Pvt Ltd** (rastotel.in) — React + Vite + TypeScript + Tailwind, statically built and deployed to Hostinger shared hosting (upload `/dist` to `public_html/`).
+Marketing/corporate website for **Rastotel Technologies Pvt Ltd** (rastotel.in) — React + Vite + TypeScript + Tailwind, statically built and deployed to Hostinger shared hosting. `.github/workflows/deploy.yml` builds and FTP-deploys `dist/` to `public_html/` automatically on every push to `main` (see README for the required GitHub secrets); manual upload is a fallback, not the normal path.
 
 ## Commands
 
@@ -35,12 +35,12 @@ Vite only exposes vars prefixed `VITE_`. Copy `.env.example` to `.env` and fill 
 - The contact form lives only in `src/pages/Contact.tsx` (Formspree + reCAPTCHA v3; any other `VITE_CONTACT_PROVIDER` value falls back to a "Demo: message captured" no-op). There used to be a second, unused generic implementation in `src/lib/form.ts` with an unimplemented EmailJS branch — it was deleted as dead code; don't recreate that split.
 - Styling is Tailwind utility classes plus a few semantic classes (`.card`, `.btn`, `.btn-outline`, `.section`) defined in `src/styles/globals.css`; brand colors/shadows/radii are extended in `tailwind.config.cjs` (`brand.primary`, `brand.primaryDark`, `brand.accent`, `brand.navy` — the logo's navy, used as the chip background behind the logo in `Navbar.tsx` since the logo itself is white/teal-on-navy and unreadable on the site's white nav bar).
 - `@/*` resolves to `src/*` (configured in both `tsconfig.json` paths and `vite.config.ts` alias) — some files use it, others use relative `../` imports; both work.
-- Case-study/solution content on `Projects.tsx` and `Solutions.tsx` is written as marketing copy only — need/advantages/who-it's-for/outcomes — deliberately with **no implementation or architecture detail** (no mention of specific hardware, protocols, or infrastructure). Keep new case studies to that same level of abstraction.
+- Case-study/solution/blog content on `Projects.tsx`, `Solutions.tsx`, and `src/lib/posts.ts` is written as marketing/thought-leadership copy only, deliberately with **no implementation or architecture detail** (no mention of specific hardware, protocols, or infrastructure). Keep new content to that same level of abstraction.
+- Blog posts are data-driven from `src/lib/posts.ts` (`Post` type: slug, title, excerpt, date, `sections[]` of heading+paragraphs) — `Blog.tsx` lists them, `Post.tsx` looks one up by slug via `getPostBySlug` and renders a "Post Not Found" fallback if the slug doesn't match. Add a new post by adding an entry to the `posts` array; also add its `/blog/<slug>` URL to `public/sitemap.xml`.
 
 ## Known-incomplete sections (placeholder/stub content)
 
 These are intentionally unfinished per the README and page contents — treat filling them in as expected work, not bugs to silently "fix" by removing:
-- **Blog** (`src/pages/Blog.tsx`, `src/pages/Post.tsx`): posts are a hardcoded in-file array; `Post.tsx` renders literal placeholder text instead of real content. README notes: "hook to MD/MDX or a headless CMS later."
 - **EmailJS contact provider**: `VITE_CONTACT_PROVIDER=emailjs` is documented in `.env.example` but not implemented anywhere — currently falls through to the Formspree code's generic "Demo" no-op branch.
 
 `Privacy.tsx` / `Terms.tsx` now have real baseline copy (not placeholder text), but it's a generic template written by Claude, not reviewed by a lawyer — flag that if asked to touch these pages, and don't treat the content as legally authoritative.
